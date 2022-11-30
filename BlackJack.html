@@ -2,6 +2,24 @@
 <head>
     <title>BlackJack</title>
     <script>
+        let cardValues = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"]
+        let cardSuits = ["Hearts", "Spades", "Diamonds", "Clubs"]
+        let cardDeck
+        function makeDeck() {
+            cardDeck = new Array()
+            for (i in cardSuits) {
+                for (n in cardValues) {
+                    let trueValue = parseInt(cardValues[n])
+                    if (cardValues[n] == "J" || cardValues[n] == "Q" || cardValues[n] == "K" ) {
+                        trueValue = 10
+                    }
+                    if (cardValues[n] == "A" ) {
+                        trueValue = 11
+                    }
+                    let card = {Suit: cardSuits[i], Value: cardValues[n]}
+                }
+            }
+        }
         function startGame() {
             document.querySelector("div.intro").style.display = "none"
             document.querySelector("div.started").style.display = "block"
