@@ -2,6 +2,10 @@
 <head>
     <title>BlackJack</title>
     <script>
+        function startGame() {
+            document.querySelector("div.intro").style.display = "none"
+            document.querySelector("div.started").style.display = "block"
+        }
 
     </script>
     <style>
@@ -9,15 +13,27 @@
     </style>
 </head>
 <body>
-    <div>
+    <div class="intro">
         <h1>Blackjack</h1>
         <p>Press play to begin!</p>
+        <button id="play" onclick="startGame()">Play</button>
     </div>
-    <div>
-        <img src="zun.jpg" alt="card">
+    <div class="started" style="display: none">
+        <div>
+            <h1>Dealer:</h1>
+            <img src="5_of_clubs.png" alt="" width="100">
+            <img src="5_of_clubs.png" alt="" width="100">
+        </div>
+        <div>
+            <h1>You:</h1>
+            <img src="5_of_clubs.png" alt="card9" width="100">
+            <img src="5_of_clubs.png" alt="" width="100">
+        </div>
+        
+        
+        <button id="hit" onclick="hit()">Hit</button>
+        <button id="stand" onclick="stand()">Stand</button>
+
     </div>
-    
-    <button id="play" onclick="startGame()">Play</button>
-    <button id="hit" onclick="hit()" style="display: none">Hit</button>
-    <button id="stand" onclick="stand()" style="display: none">Stand</button>
+   
 </body>
