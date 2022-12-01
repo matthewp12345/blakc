@@ -16,8 +16,18 @@
                     if (cardValues[n] == "A" ) {
                         trueValue = 11
                     }
-                    let card = {Suit: cardSuits[i], Value: cardValues[n]}
+                    let card = {Suit: cardSuits[i], Value: cardValues[n], Truevalue: trueValue}
+                    cardDeck.push(card)
                 }
+            }
+        }
+        function shuffleDeck() {
+            for (let i = 0; i < 1000; i++) {
+                let card1 = Math.floor((Math.random() * cardDeck.length))
+                let card2 = Math.floor((Math.random() * cardDeck.length))
+                let storage = cardDeck[card1]
+                cardDeck[card1] = cardDeck[card2]
+                cardDeck[card2] = storage
             }
         }
         function startGame() {
