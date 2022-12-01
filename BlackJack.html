@@ -2,6 +2,28 @@
 <head>
     <title>BlackJack</title>
     <script>
+        let cardValues = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"]
+        let cardSuits = ["Hearts", "Spades", "Diamonds", "Clubs"]
+        let cardDeck
+        function makeDeck() {
+            cardDeck = new Array()
+            for (i in cardSuits) {
+                for (n in cardValues) {
+                    let trueValue = parseInt(cardValues[n])
+                    if (cardValues[n] == "J" || cardValues[n] == "Q" || cardValues[n] == "K" ) {
+                        trueValue = 10
+                    }
+                    if (cardValues[n] == "A" ) {
+                        trueValue = 11
+                    }
+                    let card = {Suit: cardSuits[i], Value: cardValues[n]}
+                }
+            }
+        }
+        function startGame() {
+            document.querySelector("div.intro").style.display = "none"
+            document.querySelector("div.started").style.display = "block"
+        }
 
     </script>
     <style>
@@ -9,7 +31,32 @@
     </style>
 </head>
 <body>
-    <button id="play" onclick="startGame()">Play</button>
-    <button id="hit" onclick="hit()" style="display: none">Hit</button>
-    <button id="stand" onclick="stand()" style="display: none">Stand</button>
+    <div class="intro">
+        <h1>Blackjack</h1>
+        <p>Press play to begin!</p>
+        <button id="play" onclick="startGame()">Play</button>
+    </div>
+    <div class="started" style="display: none">
+        <div>
+            <h1>Deck:</h1>
+            <h2>52</h2>
+            <img src="2B.svg" alt="" width="104">         
+        </div>
+        <div>
+            <h1>Dealer:</h1>
+            <img src="2B.svg" alt="" width="104">
+            <img src="5_of_clubs.png" alt="" width="100">
+        </div>
+        <div>
+            <h1>You:</h1>
+            <img src="5_of_clubs.png" alt="" width="100">
+            <img src="5_of_clubs.png" alt="" width="100">
+        </div>
+        
+        
+        <button id="hit" onclick="hit()">Hit</button>
+        <button id="stand" onclick="stand()">Stand</button>
+
+    </div>
+   
 </body>
