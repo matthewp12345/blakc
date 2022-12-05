@@ -33,16 +33,20 @@
         }
         function dealHands() {
             for(let i = 0; i < 2; i++) {
-                for (player of players) {
+                for (n = 0; n < 2; n++) {
                     let card = cardDeck.pop()
-                    players[player].Hand.push(card)
-                    showCard(card, player)
+                    console.dir(players[n])
+                    players[n].Hand.push(card)
+                    showCard(card, n)
                     updatePoints()
-                    console.log(players)
+                    
                 }
             }
             updateDeck()
 
+        }
+        function showCard() {
+            
         }
         function startGame() {
             document.querySelector("div.intro").style.display = "none"
