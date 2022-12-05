@@ -57,6 +57,7 @@
             j = "c" + p
             let card = cardDeck.pop()
             players[0].Hand.push(card)
+            document.querySelector("button.c" + p).style.display = "block"
             showCard(card, 0, j)
             //updatePoints()
             //check()
