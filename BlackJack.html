@@ -2,18 +2,19 @@
 <head>
     <title>BlackJack</title>
     <script>
-        let cardValues = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"]
-        let cardSuits = ["Hearts", "Spades", "Diamonds", "Clubs"]
+        let cardValues = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "jack", "queen", "king", "ace"]
+        let cardSuits = ["hearts", "spades", "diamonds", "clubs"]
         let cardDeck
+        let players = new Array()
         function makeDeck() {
             cardDeck = new Array()
             for (i in cardSuits) {
                 for (n in cardValues) {
                     let trueValue = parseInt(cardValues[n])
-                    if (cardValues[n] == "J" || cardValues[n] == "Q" || cardValues[n] == "K" ) {
+                    if (cardValues[n] == "jack" || cardValues[n] == "queen" || cardValues[n] == "king" ) {
                         trueValue = 10
                     }
-                    if (cardValues[n] == "A" ) {
+                    if (cardValues[n] == "ace" ) {
                         trueValue = 11
                     }
                     let card = {Suit: cardSuits[i], Value: cardValues[n], Truevalue: trueValue}
@@ -30,9 +31,31 @@
                 cardDeck[card2] = storage
             }
         }
+        function dealHands() {
+            for(let i = 0; i < 2; i++) {
+                for (player of players) {
+                    let card = cardDeck.pop()
+                    players[player].Hand.push(card)
+                    showCard(card, player)
+                    updatePoints()
+                    console.log(players)
+                }
+            }
+            updateDeck()
+
+        }
         function startGame() {
             document.querySelector("div.intro").style.display = "none"
             document.querySelector("div.started").style.display = "block"
+            players = new Array()
+            let hand = new Array()
+            player = {ID: 1, Hand: hand, Name: "You", Points: 0}
+            dealer = {ID: 2, Hand: hand, Name: "Dealer", Points: 0}
+            players.push(player)
+            players.push(dealer)
+            makeDeck()
+            shuffleDeck()
+            dealHands()
         }
 
     </script>
@@ -80,15 +103,15 @@
             <h2>52</h2>
             <img src="2B.svg" alt="" width="104">         
         </div>
-        <div>
+        <div class="d">
             <h1>Dealer:</h1>
-            <img src="2B.svg" alt="" width="104">
-            <img src="5_of_clubs.png" alt="" width="100">
+            <img class="1" src="2B.svg" alt="" width="104">
+            <img class="2" src="5_of_clubs.png" alt="" width="100">
         </div>
-        <div>
+        <div class="y">
             <h1>You:</h1>
-            <img src="5_of_clubs.png" alt="" width="100">
-            <img src="5_of_clubs.png" alt="" width="100">
+            <img class="1" src="5_of_clubs.png" alt="" width="100">
+            <img class="2" src="5_of_clubs.png" alt="" width="100">
         </div>
         
         
