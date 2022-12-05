@@ -2,15 +2,16 @@
 <head>
     <title>BlackJack</title>
     <script>
-        let cardValues = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "jack", "queen", "king", "ace"]
-        let cardSuits = ["hearts", "spades", "diamonds", "clubs"]
+        "use strict"
+        const cardValues = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "jack", "queen", "king", "ace"]
+        const cardSuits = ["hearts", "spades", "diamonds", "clubs"]
         let cardDeck
-        let players = new Array()
+        let players
         let p = 2
         function makeDeck() {
             cardDeck = new Array()
-            for (i in cardSuits) {
-                for (n in cardValues) {
+            for (let i in cardSuits) {
+                for (let n in cardValues) {
                     let trueValue = parseInt(cardValues[n])
                     if (cardValues[n] == "jack" || cardValues[n] == "queen" || cardValues[n] == "king" ) {
                         trueValue = 10
@@ -34,7 +35,7 @@
         }
         function dealHands() {
             for(let i = 0; i < 2; i++) {
-                for (n = 0; n < 2; n++) {
+                for (let n = 0; n < 2; n++) {
                     let card = cardDeck.pop()
                     players[n].Hand.push(card)
                     showCard(card, n, i)
@@ -48,17 +49,17 @@
         function showCard(card, n, i) {
             n = "c" + n
             i = "c" + i
-            cardUI = document.querySelector("div." + i + " img." + n)
+            console.log(card, n, i)
+            let cardUI = document.querySelector("div." + i + " img." + n)
             console.dir(cardUI)
             cardUI.src = card.Value + "_of_" + card.Suit + ".png"
 
         }
         function hit() {
-            j = "c" + p
             let card = cardDeck.pop()
             players[0].Hand.push(card)
             document.querySelector("div.c0 img.c" + p).style.display = "inline-block"
-            showCard(card, 0, j)
+            showCard(card, p, 0)
             //updatePoints()
             //check()
             p = p + 1
@@ -86,8 +87,8 @@
             document.querySelector("div.started").style.display = "block"
             players = new Array()
             let hand = new Array()
-            player = {ID: 1, Hand: hand, Name: "You", Points: 0}
-            dealer = {ID: 2, Hand: hand, Name: "Dealer", Points: 0}
+            let player = {ID: 1, Hand: hand, Name: "You", Points: 0}
+            let dealer = {ID: 2, Hand: hand, Name: "Dealer", Points: 0}
             players.push(player)
             players.push(dealer)
             makeDeck()
