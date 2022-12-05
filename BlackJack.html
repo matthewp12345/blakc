@@ -65,6 +65,10 @@
             shuffleDeck()
             dealHands()
         }
+        function showRules() {
+            document.querySelector("div.intro").style.display = "none"
+            document.querySelector("div.rules").style.display = "block"
+        }
 
     </script>
     <style>
@@ -97,10 +101,10 @@
 
         }           
 
-.button-33:hover {
-  box-shadow: rgba(16, 97, 47, 0.35) 0 -25px 18px -14px inset,rgba(12, 80, 38, 0.25) 0 1px 2px,rgba(18, 82, 43, 0.25) 0 2px 4px,rgba(17, 68, 37, 0.25) 0 4px 8px,rgba(14, 61, 32, 0.25) 0 8px 16px,rgba(7, 46, 22, 0.25) 0 16px 32px;
-  transform: scale(1.05) rotate(-1deg);
-}
+        div.intro button:hover {
+        box-shadow: rgba(16, 97, 47, 0.35) 0 -25px 18px -14px inset,rgba(12, 80, 38, 0.25) 0 1px 2px,rgba(18, 82, 43, 0.25) 0 2px 4px,rgba(17, 68, 37, 0.25) 0 4px 8px,rgba(14, 61, 32, 0.25) 0 8px 16px,rgba(7, 46, 22, 0.25) 0 16px 32px;
+        transform: scale(1.05) rotate(-1deg);
+        }
         
         * {
             margin: 0;
@@ -126,7 +130,7 @@
         <div class="intro">
              <p>Press play to begin!</p>
              <button id="play" onclick="startGame()">Play</button>
-             <button id="rules" onclick="">Rules</button>
+             <button id="rules" onclick="showRules()">Rules</button>
         </div>
     </div>
     <div class="started" style="display: none">
@@ -145,7 +149,7 @@
             <img class="c0" src="5_of_clubs.png" alt="" width="100">
             <img class="c1" src="5_of_clubs.png" alt="" width="100">
         </div>
-        <div>
+        <div class="rules" style="display: none">
             <h1>Rules</h1>
             <ol>
                 <li>Cards from 2-10 are worth their face value. Face cards are worth 10. Aces are worth 11 or 1</li>
