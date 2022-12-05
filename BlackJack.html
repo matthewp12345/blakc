@@ -33,15 +33,23 @@
         }
         function dealHands() {
             for(let i = 0; i < 2; i++) {
-                for (player of players) {
+                for (n = 0; n < 2; n++) {
                     let card = cardDeck.pop()
-                    players[player].Hand.push(card)
-                    showCard(card, player)
-                    updatePoints()
-                    console.log(players)
+                    players[n].Hand.push(card)
+                    showCard(card, n, i)
+                    //updatePoints()
+                    
                 }
             }
-            updateDeck()
+            //updateDeck()
+
+        }
+        function showCard(card, n, i) {
+            n = "c" + n
+            i = "c" + i
+            cardUI = document.querySelector("div." + i + " img." + n)
+            console.dir(cardUI)
+            cardUI.src = card.Value + "_of_" + card.Suit + ".png"
 
         }
         function startGame() {
@@ -99,7 +107,7 @@
             padding: 0;
         }
 
-        div.background-image {
+        div.intro {
             background-image: url(black\ jack.jpg);
             background-size: cover;
             width: auto;
@@ -114,7 +122,7 @@
     </style>
 </head>
 <body>
-    <div class="background-image">
+    <div>
         <div class="intro">
              <h1>Blackjack</h1>
              <p>Press play to begin!</p>
@@ -128,15 +136,15 @@
             <h2>52</h2>
             <img src="2B.svg" alt="" width="104">         
         </div>
-        <div class="d">
+        <div class="c1">
             <h1>Dealer:</h1>
-            <img class="1" src="2B.svg" alt="" width="104">
-            <img class="2" src="5_of_clubs.png" alt="" width="100">
+            <img class="c0" src="2B.svg" alt="" width="104">
+            <img class="c1" src="5_of_clubs.png" alt="" width="100">
         </div>
-        <div class="y">
+        <div class="c0">
             <h1>You:</h1>
-            <img class="1" src="5_of_clubs.png" alt="" width="100">
-            <img class="2" src="5_of_clubs.png" alt="" width="100">
+            <img class="c0" src="5_of_clubs.png" alt="" width="100">
+            <img class="c1" src="5_of_clubs.png" alt="" width="100">
         </div>
         <div>
             <h1>Rules</h1>
