@@ -5,6 +5,7 @@
         let cardValues = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"]
         let cardSuits = ["Hearts", "Spades", "Diamonds", "Clubs"]
         let cardDeck
+        let players = new Array()
         function makeDeck() {
             cardDeck = new Array()
             for (i in cardSuits) {
@@ -30,9 +31,29 @@
                 cardDeck[card2] = storage
             }
         }
+        function dealHands() {
+            for(let i = 0; i < 2; i++) {
+                for (player of players) {
+                    let cart = deck.pop()
+                    players[player].Hand.push(card)
+                    showCard(card, player)
+                    updatePoints()
+                }
+            }
+
+        }
         function startGame() {
             document.querySelector("div.intro").style.display = "none"
             document.querySelector("div.started").style.display = "block"
+            players = new Array()
+            let hand = new Array()
+            player = {ID: 1, Hand: hand, Name: "You", Points: 0}
+            dealer = {ID: 2, Hand: hand, Name: "Dealer", Points: 0}
+            players.push(player)
+            players.push(dealer)
+            makeDeck()
+            shuffleDeck()
+            dealHands()
         }
 
     </script>
