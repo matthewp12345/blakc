@@ -35,23 +35,23 @@
         }
         function dealHands() {
             for(let i = 0; i < 2; i++) {
-                for (let n = 0; n < 2; n++) {
+                for (let d = 0; d < 2; d++) {
                     let card = cardDeck.pop()
-                    players[n].Hand.push(card)
-                    showCard(card, n, i)
-                    //updatePoints()
-                    
+                    players[d].Hand.push(card)
+                    console.log(players)
+                    showCard(card, i, d)
+                    updatePoints(players[d])  
                 }
             }
+            console.log(players[0].Hand)
+            console.log(players[1].Hand)
             //updateDeck()
 
         }
-        function showCard(card, n, i) {
-            n = "c" + n
+        function showCard(card, i, d) {
             i = "c" + i
-            console.log(card, n, i)
-            let cardUI = document.querySelector("div." + i + " img." + n)
-            console.dir(cardUI)
+            d = "c" + d
+            let cardUI = document.querySelector("div." + d + " img." + i)
             cardUI.src = card.Value + "_of_" + card.Suit + ".png"
 
         }
@@ -60,18 +60,26 @@
             players[0].Hand.push(card)
             document.querySelector("div.c0 img.c" + p).style.display = "inline-block"
             showCard(card, p, 0)
-            //updatePoints()
+            updatePoints(players[0])
             //check()
             p = p + 1
+            document.querySelector("h2.cards").innerHTML = cardDeck.length
         }
         function stand() {
 
         }
         function check() {
-
+            if (players[0].Points > 21) {
+                document.querySelector(div.loser).style.display = "block"
+            }
         }
-        function updatePoints() {
-
+        function updatePoints(player) {
+            player.Points = 0
+            for (let card of player.Hand) {
+                console.log(card)
+                player.Points += card.Truevalue
+            }
+            console.log(player.Points)
         }
         function updateDeck() {
 
@@ -86,9 +94,10 @@
             document.querySelector("div.intro").style.display = "none"
             document.querySelector("div.started").style.display = "block"
             players = new Array()
-            let hand = new Array()
-            let player = {ID: 1, Hand: hand, Name: "You", Points: 0}
-            let dealer = {ID: 2, Hand: hand, Name: "Dealer", Points: 0}
+            let playerhand = new Array()
+            let dealerhand = new Array()
+            let player = {ID: 0, Hand: playerhand, Name: "You", Points: 0}
+            let dealer = {ID: 1, Hand: dealerhand, Name: "Dealer", Points: 0}
             players.push(player)
             players.push(dealer)
             makeDeck()
@@ -162,10 +171,16 @@
              <button id="rules" onclick="showRules()">Rules</button>
         </div>
     </div>
+    <div class="loser" style="display: none">
+        <h1>You Lose!</h1>
+    </div>
+    <div class="winner" style="display: none">
+        <h1>You Win!</h1>
+    </div>
     <div class="started" style="display: none">
         <div>
             <h1>Deck:</h1>
-            <h2>52</h2>
+            <h2 class="cards">48</h2>
             <img src="2B.svg" alt="" width="104">         
         </div>
         <div class="c1">
@@ -218,6 +233,7 @@
         
         
     </div>
+
     
    
 </body>
