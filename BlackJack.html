@@ -93,13 +93,16 @@
             transition: all 250ms;
              border: 0;
             font-size: 40px;
+            margin: 100px;
              user-select: none;
              -webkit-user-select: none;
             touch-action: manipulation;
             
-            
 
-        }           
+        }    
+        div.intro button#rules {
+            float: right;
+        }       
 
         div.intro button:hover {
         box-shadow: rgba(16, 97, 47, 0.35) 0 -25px 18px -14px inset,rgba(12, 80, 38, 0.25) 0 1px 2px,rgba(18, 82, 43, 0.25) 0 2px 4px,rgba(17, 68, 37, 0.25) 0 4px 8px,rgba(14, 61, 32, 0.25) 0 8px 16px,rgba(7, 46, 22, 0.25) 0 16px 32px;
@@ -157,16 +160,15 @@
     </div>
     <div class="rules" style="display: none">
         <h1>Rules</h1>
-        <ol>
+        <ol type="1">
             <li>Cards from 2-10 are worth their face value. Face cards are worth 10. Aces are worth 11 or 1</li>
             <li>If your hand is closer to 21 than the dealer's, you win an equal amount to your bet. If your hand is equal to 21, it is called a “blackjack” or a “natural” and you automatically win</li>
             <li>If the dealer's hand is closer to 21 than yours, you lose your entire bet. If your hand becomes over 21 after a hit, it is called a “bust” and you automatically lose your bet</li>
             <li>If your hand and the dealer's hand are equal, you do not win or lose anything. </li>
             <li>Soft 17 is another way of describing a blackjack hand worth 17 which includes an Ace, where the Ace counted either as 1 or 11</li>
-            <li></li>
-         </ol>
+        </ol>
        
-        </ul>
+        
         
     </div>
     
