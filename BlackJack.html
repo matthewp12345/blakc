@@ -69,7 +69,6 @@
             cardUI.style.display = "inline-block"
             document.querySelector("div.c1 img.c0").style.display = "none"
             cardUI.src = card.Value + "_of_" + card.Suit + ".png"
-
         }
         function hit(player) {
             let card = cardDeck.pop()
@@ -111,7 +110,6 @@
                     if (card.Value == "ace" && player.Points > 21) {
                         card.Truevalue = 1
                         updatePoints(player)
-                        
                     }
                 }
                 if (player.Points > 21 && player.ID == 0) {
@@ -120,8 +118,6 @@
                 else if (player.Points > 21 && player.ID == 1) {
                     youWin()
                 }
-
-
             }
         }
         function updatePoints(player) {
@@ -210,7 +206,6 @@
             document.querySelector("div.intro").style.display = "none"
             document.querySelector("div.rules").style.display = "block"
         }
-
     </script>
     <style>
         div.intro button {
@@ -231,23 +226,18 @@
              user-select: none;
              -webkit-user-select: none;
             touch-action: manipulation;
-            
-
         }    
         div.intro button#rules {
             float: right;
         }       
-
         div.intro button:hover {
         box-shadow: rgba(16, 97, 47, 0.35) 0 -25px 18px -14px inset,rgba(12, 80, 38, 0.25) 0 1px 2px,rgba(18, 82, 43, 0.25) 0 2px 4px,rgba(17, 68, 37, 0.25) 0 4px 8px,rgba(14, 61, 32, 0.25) 0 8px 16px,rgba(7, 46, 22, 0.25) 0 16px 32px;
         transform: scale(1.05) rotate(-1deg);
         }
-        
         * {
             margin: 0;
             padding: 0;
         }
-
         div.intro {
             background-image: url(black\ jack.jpg);
             background-size: cover;
@@ -256,7 +246,6 @@
             background-position: 1px;
             
         }
-
     </style>
 </head>
 <body>
@@ -303,12 +292,9 @@
             <img class="c6" src="5_of_clubs.png" alt="" width="100" style="display: none">
             <img class="c7" src="5_of_clubs.png" alt="" width="100" style="display: none">
         </div>
-
-        
         <button id="hit" class="game" onclick="hit(players[0])">Hit</button>
         <button id="stand" class="game" onclick="dealerMove()">Stand</button>
         <button id="restart" onclick="startGame()">Restart</button>
-
         <style>
             button#hit, button#stand {
                 border: none;
@@ -325,7 +311,6 @@
                 font-family: 'mogra', san serif;
             }
         </style>
-
     </div>
     <div class="rules" style="display: none">
         <h1>Rules</h1>
@@ -336,11 +321,5 @@
             <li>If your hand and the dealer's hand are equal, you do not win or lose anything. </li>
             <li>Soft 17 is another way of describing a blackjack hand worth 17 which includes an Ace, where the Ace counted either as 1 or 11</li>
         </ol>
-       
-        
-        
     </div>
-
-    
-   
 </body>
