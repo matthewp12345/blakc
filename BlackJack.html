@@ -139,7 +139,7 @@
             document.querySelector("div.c1 h2").style.display = "block"
             pWins += 1 
             document.querySelector("div.wins h1.pWins").innerHTML = pWins   
-            document.querySelector("button#nextHand").disabled = null
+            document.querySelector("button#nextHand").style.display = "inline-block"
         }
         function youLose() {
             console.log("l")
@@ -153,7 +153,7 @@
             document.querySelector("div.c1 h2").style.display = "block"
             dWins += 1
             document.querySelector("div.wins h1.dWins").innerHTML = dWins
-            document.querySelector("button#nextHand").disabled = null
+            document.querySelector("button#nextHand").style.display = "inline-block"
         }
         function tieGame() {
             console.log("t")
@@ -165,7 +165,7 @@
             document.querySelector("div.c1 img.c0").style.display = "inline-block"
             document.querySelector("div.c1 img.d0").style.display = "none"
             document.querySelector("div.c1 h2").style.display = "block"
-            document.querySelector("button#nextHand").disabled = null
+            document.querySelector("button#nextHand").style.display = "inline-block"
         }
         function finish() {
             if (players[0].Points > players[1].Points) {
@@ -242,6 +242,21 @@
         }
     </script>
     <style>
+        button.game {
+            border: none;
+            border-radius: 100px;
+            color: black;
+            background-color: white;
+            padding: 5px 11px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 15px;
+            margin: 8px 4px;
+            cursor: pointer;
+            font-family: 'mogra', san serif;
+        }
+       
         div.intro button {
             background-color: #0e5a2a;
             border-radius: 100px;
@@ -329,23 +344,7 @@
         <button id="hit" class="game" onclick="hit(players[0])">Hit</button>
         <button id="stand" class="game" onclick="dealerMove()">Stand</button>
         <button id="restart" onclick="startGame()">Restart</button>
-        <button id="nextHand" onclick="nextHand()" disabled="disabled"> Next hand</button>
-        <style>
-            button#hit, button#stand {
-                border: none;
-                border-radius: 100px;
-                color: black;
-                background-color: white;
-                padding: 5px 11px;
-                text-align: center;
-                text-decoration: none;
-                display: inline-block;
-                font-size: 15px;
-                margin: 8px 4px;
-                cursor: pointer;
-                font-family: 'mogra', san serif;
-            }
-        </style>
+        <button id="nextHand" onclick="nextHand()" style="display: none"> Next hand</button>
     </div>
     <div class="rules" style="display: none">
         <h1>Rules</h1>
