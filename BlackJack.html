@@ -65,6 +65,7 @@
             d = "c" + d
             let cardUI = document.querySelector("div." + d + " img." + i)
             cardUI.style.display = "inline-block"
+            document.querySelector("div.c1 img.c0").style.display = "none"
             cardUI.src = card.Value + "_of_" + card.Suit + ".png"
 
         }
@@ -85,7 +86,9 @@
                     hit(players[1])
                     if (players[1].Points > 21) {
                         youWin()
+                        break
                     }
+                continue
                 }
                 for (let card of players[1].Hand) {
                     if (players[1].Points == 17 && card.Truevalue == 11) {
@@ -128,16 +131,39 @@
             document.querySelector("div.c" + player.ID + " h2").innerHTML = player.Points
         }
         function youWin() {
+            console.log("w")
+            endText = document.querySelector("div.end h1")
             endText.style.display = "block"
             endText.innerHTML = "You win!"
+            document.querySelector("button#hit").disabled = "true"
+            document.querySelector("button#stand").disabled = "true"
+            document.querySelector("div.c1 img.c0").style.display = "inline-block"
+            document.querySelector("div.c1 img.d0").style.display = "none"
+            document.querySelector("div.c1 h2").style.display = "block"
+
+            
         }
         function youLose() {
+            console.log("l")
+            endText = document.querySelector("div.end h1")
             endText.style.display = "block"
             endText.innerHTML = "You lose!"
+            document.querySelector("button#hit").disabled = "true"
+            document.querySelector("button#stand").disabled = "true"
+            document.querySelector("div.c1 img.c0").style.display = "inline-block"
+            document.querySelector("div.c1 img.d0").style.display = "none"
+            document.querySelector("div.c1 h2").style.display = "block"
         }
         function tieGame() {
+            console.log("t")
+            endText = document.querySelector("div.end h1")
             endText.style.display = "block"
             endText.innerHTML = "Tie game!"
+            document.querySelector("button#hit").disabled = "true"
+            document.querySelector("button#stand").disabled = "true"
+            document.querySelector("div.c1 img.c0").style.display = "inline-block"
+            document.querySelector("div.c1 img.d0").style.display = "none"
+            document.querySelector("div.c1 h2").style.display = "block"
         }
         function finish() {
             if (players[0].Points > players[1].Points) {
@@ -171,6 +197,11 @@
             document.querySelector("h2.cards").innerHTML = 48
             endText = document.querySelector("div.end h1")
             endText.style.display = "none"
+            document.querySelector("button#hit").disabled = null
+            document.querySelector("button#stand").disabled = null
+            document.querySelector("div.c1 img.c0").style.display = "none"
+            document.querySelector("div.c1 img.d0").style.display = "inline-block"
+            document.querySelector("div.c1 h2").style.display = "none"
         }
         function showRules() {
             document.querySelector("div.intro").style.display = "none"
@@ -244,7 +275,8 @@
         <div class="c1">
             <h1>Dealer:</h1>
             <h2></h2>
-            <img class="c0" src="2B.svg" alt="" width="104">
+            <img class="d0" src="2B.svg" alt="" width="104">
+            <img class="c0" src="5_of_clubs.png" alt="" width="100" style="display: none">
             <img class="c1" src="5_of_clubs.png" alt="" width="100" style="display: none">
             <img class="c2" src="5_of_clubs.png" alt="" width="100" style="display: none">
             <img class="c3" src="5_of_clubs.png" alt="" width="100" style="display: none">
@@ -267,8 +299,8 @@
         </div>
 
         
-        <button id="hit" onclick="hit(players[0])">Hit</button>
-        <button id="stand" onclick="dealerMove()">Stand</button>
+        <button id="hit" class="game" onclick="hit(players[0])">Hit</button>
+        <button id="stand" class="game" onclick="dealerMove()">Stand</button>
         <button id="restart" onclick="startGame()">Restart</button>
 
         <style>
