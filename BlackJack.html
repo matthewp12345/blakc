@@ -198,9 +198,40 @@
             document.querySelector("div.c1 img.c0").style.display = "none"
             document.querySelector("div.c1 img.d0").style.display = "inline-block"
             document.querySelector("div.c1 h2").style.display = "none"
+            document.querySelector("div.wins h1.dWins").innerHTML = 0
+            document.querySelector("div.wins h1.pWins").innerHTML = 0
             makeDeck()
             shuffleDeck()
             dealHands()
+        }
+        function nextHand() {
+            document.querySelector("div.intro").style.display = "none"
+            document.querySelector("div.started").style.display = "block"
+            players = new Array()
+            playerhand = new Array()
+            dealerhand = new Array()
+            playerStart = {ID: 0, Hand: playerhand, Name: "You", Points: 0}
+            dealerStart = {ID: 1, Hand: dealerhand, Name: "Dealer", Points: 0}
+            players.push(playerStart)
+            players.push(dealerStart)
+            let images = document.querySelectorAll("div.c0 img, div.c1 img")
+            for (let image of images) {
+                image.style.display = "none"
+            }
+            p = 2
+            endText = document.querySelector("div.end h1")
+            endText.style.display = "none"
+            document.querySelector("button#hit").disabled = null
+            document.querySelector("button#stand").disabled = null
+            document.querySelector("div.c1 img.c0").style.display = "none"
+            document.querySelector("div.c1 img.d0").style.display = "inline-block"
+            document.querySelector("div.c1 h2").style.display = "none"
+            if (cardDeck.length < 10) {
+                makeDeck()
+                shuffleDeck()
+            }
+            dealHands()
+            document.querySelector("h2.cards").innerHTML = cardDeck.length
         }
         function showRules() {
             document.querySelector("div.intro").style.display = "none"
@@ -295,6 +326,7 @@
         <button id="hit" class="game" onclick="hit(players[0])">Hit</button>
         <button id="stand" class="game" onclick="dealerMove()">Stand</button>
         <button id="restart" onclick="startGame()">Restart</button>
+        <button id="nextHand" onclick="nextHand()"> Next hand</button>
         <style>
             button#hit, button#stand {
                 border: none;
