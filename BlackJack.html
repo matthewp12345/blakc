@@ -13,6 +13,8 @@
         let dealerStart
         let p = 2
         let endText
+        let pWins = 0
+        let dWins = 0
         function makeDeck() {
             cardDeck = new Array()
             for (let i in cardSuits) {
@@ -85,7 +87,6 @@
                 if (players[1].Points < 17) {
                     hit(players[1])
                     if (players[1].Points > 21) {
-                        youWin()
                         break
                     }
                 continue
@@ -140,8 +141,8 @@
             document.querySelector("div.c1 img.c0").style.display = "inline-block"
             document.querySelector("div.c1 img.d0").style.display = "none"
             document.querySelector("div.c1 h2").style.display = "block"
-
-            
+            pWins += 1 
+            document.querySelector("div.wins h1.pWins").innerHTML = pWins   
         }
         function youLose() {
             console.log("l")
@@ -153,6 +154,8 @@
             document.querySelector("div.c1 img.c0").style.display = "inline-block"
             document.querySelector("div.c1 img.d0").style.display = "none"
             document.querySelector("div.c1 h2").style.display = "block"
+            dWins += 1
+            document.querySelector("div.wins h1.dWins").innerHTML = dWins
         }
         function tieGame() {
             console.log("t")
@@ -191,17 +194,17 @@
                 image.style.display = "none"
             }
             p = 2
-            makeDeck()
-            shuffleDeck()
-            dealHands()
-            document.querySelector("h2.cards").innerHTML = 48
             endText = document.querySelector("div.end h1")
             endText.style.display = "none"
+            document.querySelector("h2.cards").innerHTML = 48
             document.querySelector("button#hit").disabled = null
             document.querySelector("button#stand").disabled = null
             document.querySelector("div.c1 img.c0").style.display = "none"
             document.querySelector("div.c1 img.d0").style.display = "inline-block"
             document.querySelector("div.c1 h2").style.display = "none"
+            makeDeck()
+            shuffleDeck()
+            dealHands()
         }
         function showRules() {
             document.querySelector("div.intro").style.display = "none"
@@ -267,6 +270,9 @@
         <h1 style="display: none">You Lose!</h1>
     </div>
     <div class="started" style="display: none">
+        <div class="wins">
+            <h1 class="pWins" style="display: inline-block">0</h1><h1 style="display: inline-block"> - </h1><h1 class="dWins" style="display: inline-block">0</h1>
+        </div>
         <div>
             <h1>Deck:</h1>
             <h2 class="cards">48</h2>
