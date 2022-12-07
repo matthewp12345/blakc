@@ -139,6 +139,7 @@
             document.querySelector("div.c1 h2").style.display = "block"
             pWins += 1 
             document.querySelector("div.wins h1.pWins").innerHTML = pWins   
+            document.querySelector("button#nextHand").disabled = null
         }
         function youLose() {
             console.log("l")
@@ -152,6 +153,7 @@
             document.querySelector("div.c1 h2").style.display = "block"
             dWins += 1
             document.querySelector("div.wins h1.dWins").innerHTML = dWins
+            document.querySelector("button#nextHand").disabled = null
         }
         function tieGame() {
             console.log("t")
@@ -163,6 +165,7 @@
             document.querySelector("div.c1 img.c0").style.display = "inline-block"
             document.querySelector("div.c1 img.d0").style.display = "none"
             document.querySelector("div.c1 h2").style.display = "block"
+            document.querySelector("button#nextHand").disabled = null
         }
         function finish() {
             if (players[0].Points > players[1].Points) {
@@ -326,7 +329,7 @@
         <button id="hit" class="game" onclick="hit(players[0])">Hit</button>
         <button id="stand" class="game" onclick="dealerMove()">Stand</button>
         <button id="restart" onclick="startGame()">Restart</button>
-        <button id="nextHand" onclick="nextHand()"> Next hand</button>
+        <button id="nextHand" onclick="nextHand()" disabled="disabled"> Next hand</button>
         <style>
             button#hit, button#stand {
                 border: none;
