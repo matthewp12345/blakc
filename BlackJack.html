@@ -2,15 +2,23 @@
 <head>
     <title>BlackJack</title>
     <script>
-        let cardValues = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "jack", "queen", "king", "ace"]
-        let cardSuits = ["hearts", "spades", "diamonds", "clubs"]
+        "use strict"
+        const cardValues = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "jack", "queen", "king", "ace"]
+        const cardSuits = ["hearts", "spades", "diamonds", "clubs"]
+        let playerhand
+        let dealerhand
         let cardDeck
-        let players = new Array()
+        let players
+        let playerStart
+        let dealerStart
         let p = 2
+        let endText
+        let pWins = 0
+        let dWins = 0
         function makeDeck() {
             cardDeck = new Array()
-            for (i in cardSuits) {
-                for (n in cardValues) {
+            for (let i in cardSuits) {
+                for (let n in cardValues) {
                     let trueValue = parseInt(cardValues[n])
                     if (cardValues[n] == "jack" || cardValues[n] == "queen" || cardValues[n] == "king" ) {
                         trueValue = 10
@@ -34,80 +42,221 @@
         }
         function dealHands() {
             for(let i = 0; i < 2; i++) {
-                for (n = 0; n < 2; n++) {
+                for (let d = 0; d < 2; d++) {
                     let card = cardDeck.pop()
-                    players[n].Hand.push(card)
-                    showCard(card, n, i)
-                    //updatePoints()
-                    
+                    players[d].Hand.push(card)
+                    showCard(card, i, d)
+                    updatePoints(players[d])  
                 }
             }
-            //updateDeck()
-
+            if (players[0].Points == 21 && players[1].Points != 21) {
+                youWin()
+            }
+            if (players[0].Points != 21 && players[1].Points == 21) {
+                youLose()
+            }
+            if (players[0].Points == 21 && players[1].Points == 21) {
+                tieGame()
+            }
+            for (let player of players) {
+                check(player)
+            }
         }
-        function showCard(card, n, i) {
-            n = "c" + n
+        function showCard(card, i, d) {
             i = "c" + i
-            cardUI = document.querySelector("div." + i + " img." + n)
-            console.dir(cardUI)
+            d = "c" + d
+            let cardUI = document.querySelector("div." + d + " img." + i)
+            cardUI.style.display = "inline-block"
+            document.querySelector("div.c1 img.c0").style.display = "none"
             cardUI.src = card.Value + "_of_" + card.Suit + ".png"
-
         }
-        function hit() {
-            j = "c" + p
+        function hit(player) {
             let card = cardDeck.pop()
-            players[0].Hand.push(card)
-            document.querySelector("button.c" + p).style.display = "block"
-            showCard(card, 0, j)
-            //updatePoints()
-            //check()
-            p++
+            player.Hand.push(card)
+            document.querySelector("div.c" + player.ID + " img.c" + p).style.display = "inline-block"
+            showCard(card, p, player.ID)
+            updatePoints(player)
+            check(player)
+            p = p + 1
+            document.querySelector("h2.cards").innerHTML = cardDeck.length
         }
-        function stand() {
-
+        function dealerMove() {
+            while (true) {
+                let h17 = false
+                if (players[1].Points < 17) {
+                    hit(players[1])
+                    if (players[1].Points > 21) {
+                        break
+                    }
+                continue
+                }
+                for (let card of players[1].Hand) {
+                    if (players[1].Points == 17 && card.Truevalue == 11) {
+                        h17 = true
+                    }
+                }
+                if (h17 == true) {
+                    hit(players[1])
+                }
+                else if (players[1].Points > 16) {
+                    finish()
+                    break
+                }
+            }
         }
-        function check() {
-
+        function check(player) {
+            if (player.Points > 21) {
+                for (let card of player.Hand) {
+                    if (card.Value == "ace" && player.Points > 21) {
+                        card.Truevalue = 1
+                        updatePoints(player)
+                    }
+                }
+                if (player.Points > 21 && player.ID == 0) {
+                    youLose()
+                }
+                else if (player.Points > 21 && player.ID == 1) {
+                    youWin()
+                }
+            }
         }
-        function updatePoints() {
-
-        }
-        function updateDeck() {
-
+        function updatePoints(player) {
+            player.Points = 0
+            for (let card of player.Hand) {
+                player.Points += card.Truevalue
+            }
+            document.querySelector("div.c" + player.ID + " h2").innerHTML = player.Points
         }
         function youWin() {
-
+            console.log("w")
+            endText = document.querySelector("div.end h1")
+            endText.style.display = "block"
+            endText.innerHTML = "You win!"
+            document.querySelector("button#hit").disabled = "true"
+            document.querySelector("button#stand").disabled = "true"
+            document.querySelector("div.c1 img.c0").style.display = "inline-block"
+            document.querySelector("div.c1 img.d0").style.display = "none"
+            document.querySelector("div.c1 h2").style.display = "block"
+            pWins += 1 
+            document.querySelector("div.wins h1.pWins").innerHTML = pWins   
+            document.querySelector("button#nextHand").style.display = "inline-block"
         }
         function youLose() {
-
+            console.log("l")
+            endText = document.querySelector("div.end h1")
+            endText.style.display = "block"
+            endText.innerHTML = "You lose!"
+            document.querySelector("button#hit").disabled = "true"
+            document.querySelector("button#stand").disabled = "true"
+            document.querySelector("div.c1 img.c0").style.display = "inline-block"
+            document.querySelector("div.c1 img.d0").style.display = "none"
+            document.querySelector("div.c1 h2").style.display = "block"
+            dWins += 1
+            document.querySelector("div.wins h1.dWins").innerHTML = dWins
+            document.querySelector("button#nextHand").style.display = "inline-block"
+        }
+        function tieGame() {
+            console.log("t")
+            endText = document.querySelector("div.end h1")
+            endText.style.display = "block"
+            endText.innerHTML = "Tie game!"
+            document.querySelector("button#hit").disabled = "true"
+            document.querySelector("button#stand").disabled = "true"
+            document.querySelector("div.c1 img.c0").style.display = "inline-block"
+            document.querySelector("div.c1 img.d0").style.display = "none"
+            document.querySelector("div.c1 h2").style.display = "block"
+            document.querySelector("button#nextHand").style.display = "inline-block"
+        }
+        function finish() {
+            if (players[0].Points > players[1].Points) {
+                youWin()
+            }
+            else if (players[0].Points < players[1].Points) {
+                youLose()
+            }
+            else {
+                tieGame()
+            }
         }
         function startGame() {
             document.querySelector("div.intro").style.display = "none"
             document.querySelector("div.started").style.display = "block"
             players = new Array()
-            let hand = new Array()
-            player = {ID: 1, Hand: hand, Name: "You", Points: 0}
-            dealer = {ID: 2, Hand: hand, Name: "Dealer", Points: 0}
-            players.push(player)
-            players.push(dealer)
+            playerhand = new Array()
+            dealerhand = new Array()
+            playerStart = {ID: 0, Hand: playerhand, Name: "You", Points: 0}
+            dealerStart = {ID: 1, Hand: dealerhand, Name: "Dealer", Points: 0}
+            players.push(playerStart)
+            players.push(dealerStart)
+            let images = document.querySelectorAll("div.c0 img, div.c1 img")
+            for (let image of images) {
+                image.style.display = "none"
+            }
+            p = 2
+            endText = document.querySelector("div.end h1")
+            endText.style.display = "none"
+            document.querySelector("h2.cards").innerHTML = 48
+            document.querySelector("button#hit").disabled = null
+            document.querySelector("button#stand").disabled = null
+            document.querySelector("div.c1 img.c0").style.display = "none"
+            document.querySelector("div.c1 img.d0").style.display = "inline-block"
+            document.querySelector("div.c1 h2").style.display = "none"
+            document.querySelector("div.wins h1.dWins").innerHTML = 0
+            document.querySelector("div.wins h1.pWins").innerHTML = 0
             makeDeck()
             shuffleDeck()
             dealHands()
+        }
+        function nextHand() {
+            document.querySelector("div.intro").style.display = "none"
+            document.querySelector("div.started").style.display = "block"
+            players = new Array()
+            playerhand = new Array()
+            dealerhand = new Array()
+            playerStart = {ID: 0, Hand: playerhand, Name: "You", Points: 0}
+            dealerStart = {ID: 1, Hand: dealerhand, Name: "Dealer", Points: 0}
+            players.push(playerStart)
+            players.push(dealerStart)
+            let images = document.querySelectorAll("div.c0 img, div.c1 img")
+            for (let image of images) {
+                image.style.display = "none"
+            }
+            p = 2
+            endText = document.querySelector("div.end h1")
+            endText.style.display = "none"
+            document.querySelector("button#hit").disabled = null
+            document.querySelector("button#stand").disabled = null
+            document.querySelector("div.c1 img.c0").style.display = "none"
+            document.querySelector("div.c1 img.d0").style.display = "inline-block"
+            document.querySelector("div.c1 h2").style.display = "none"
+            if (cardDeck.length < 10) {
+                makeDeck()
+                shuffleDeck()
+            }
+            dealHands()
+            document.querySelector("h2.cards").innerHTML = cardDeck.length
         }
         function showRules() {
             document.querySelector("div.intro").style.display = "none"
             document.querySelector("div.rules").style.display = "block"
         }
-
     </script>
     <style>
-        div.intro h1 {
-         text-align: center;
-         font-size: 70px;
+        button.game {
+            border: none;
+            border-radius: 100px;
+            color: black;
+            background-color: white;
+            padding: 5px 11px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 15px;
+            margin: 8px 4px;
+            cursor: pointer;
+            font-family: 'mogra', san serif;
         }
-        div.intro {
-         
-        }
+       
         div.intro button {
             background-color: #0e5a2a;
             border-radius: 100px;
@@ -126,23 +275,18 @@
              user-select: none;
              -webkit-user-select: none;
             touch-action: manipulation;
-            
-
         }    
         div.intro button#rules {
             float: right;
         }       
-
         div.intro button:hover {
         box-shadow: rgba(16, 97, 47, 0.35) 0 -25px 18px -14px inset,rgba(12, 80, 38, 0.25) 0 1px 2px,rgba(18, 82, 43, 0.25) 0 2px 4px,rgba(17, 68, 37, 0.25) 0 4px 8px,rgba(14, 61, 32, 0.25) 0 8px 16px,rgba(7, 46, 22, 0.25) 0 16px 32px;
         transform: scale(1.05) rotate(-1deg);
         }
-        
         * {
             margin: 0;
             padding: 0;
         }
-
         div.intro {
             background-image: url(black\ jack.jpg);
             background-size: cover;
@@ -151,73 +295,65 @@
             background-position: 1px;
             
         }
-
     </style>
 </head>
 <body>
     <div>
         <div class="intro">
-             <p>Press play to begin!</p>
              <button id="play" onclick="startGame()">Play</button>
              <button id="rules" onclick="showRules()">Rules</button>
         </div>
     </div>
+    <div class="end">
+        <h1 style="display: none">You Lose!</h1>
+    </div>
     <div class="started" style="display: none">
+        <div class="wins">
+            <h1 class="pWins" style="display: inline-block">0</h1><h1 style="display: inline-block"> - </h1><h1 class="dWins" style="display: inline-block">0</h1>
+        </div>
         <div>
             <h1>Deck:</h1>
-            <h2>52</h2>
+            <h2 class="cards">48</h2>
             <img src="2B.svg" alt="" width="104">         
         </div>
         <div class="c1">
             <h1>Dealer:</h1>
-            <img class="c0" src="2B.svg" alt="" width="104">
-            <img class="c1" src="5_of_clubs.png" alt="" width="100">
+            <h2></h2>
+            <img class="d0" src="2B.svg" alt="" width="104">
+            <img class="c0" src="5_of_clubs.png" alt="" width="100" style="display: none">
+            <img class="c1" src="5_of_clubs.png" alt="" width="100" style="display: none">
+            <img class="c2" src="5_of_clubs.png" alt="" width="100" style="display: none">
+            <img class="c3" src="5_of_clubs.png" alt="" width="100" style="display: none">
+            <img class="c4" src="5_of_clubs.png" alt="" width="100" style="display: none">
+            <img class="c5" src="5_of_clubs.png" alt="" width="100" style="display: none">
+            <img class="c6" src="5_of_clubs.png" alt="" width="100" style="display: none">
+            <img class="c7" src="5_of_clubs.png" alt="" width="100" style="display: none">
         </div>
         <div class="c0">
             <h1>You:</h1>
-            <img class="c0" src="5_of_clubs.png" alt="" width="100">
-            <img class="c1" src="5_of_clubs.png" alt="" width="100">
-            <img class="c2" src="5_of_clubs.png" alt="" width="100">
-            <img class="c3" src="5_of_clubs.png" alt="" width="100">
-            <img class="c4" src="5_of_clubs.png" alt="" width="100">
-            <img class="c5" src="5_of_clubs.png" alt="" width="100">
+            <h2></h2>
+            <img class="c0" src="5_of_clubs.png" alt="" width="100" style="display: none">
+            <img class="c1" src="5_of_clubs.png" alt="" width="100" style="display: none">
+            <img class="c2" src="5_of_clubs.png" alt="" width="100" style="display: none">
+            <img class="c3" src="5_of_clubs.png" alt="" width="100" style="display: none">
+            <img class="c4" src="5_of_clubs.png" alt="" width="100" style="display: none">
+            <img class="c5" src="5_of_clubs.png" alt="" width="100" style="display: none">
+            <img class="c6" src="5_of_clubs.png" alt="" width="100" style="display: none">
+            <img class="c7" src="5_of_clubs.png" alt="" width="100" style="display: none">
         </div>
-
-        
-        <button id="hit" onclick="hit()">Hit</button>
-        <button id="stand" onclick="stand()">Stand</button>
-
-        <style>
-            button#hit, button#stand {
-                border: none;
-                border-radius: 100px;
-                color: black;
-                background-color: white;
-                padding: 5px 11px;
-                text-align: center;
-                text-decoration: none;
-                display: inline-block;
-                font-size: 15px;
-                margin: 8px 4px;
-                cursor: pointer;
-                font-family: 'mogra', san serif;
-            }
-        </style>
-
+        <button id="hit" class="game" onclick="hit(players[0])">Hit</button>
+        <button id="stand" class="game" onclick="dealerMove()">Stand</button>
+        <button id="restart" onclick="startGame()">Restart</button>
+        <button id="nextHand" onclick="nextHand()" style="display: none"> Next hand</button>
     </div>
     <div class="rules" style="display: none">
         <h1>Rules</h1>
-        <ol type="1">
+        <ol>
             <li>Cards from 2-10 are worth their face value. Face cards are worth 10. Aces are worth 11 or 1</li>
             <li>If your hand is closer to 21 than the dealer's, you win an equal amount to your bet. If your hand is equal to 21, it is called a “blackjack” or a “natural” and you automatically win</li>
             <li>If the dealer's hand is closer to 21 than yours, you lose your entire bet. If your hand becomes over 21 after a hit, it is called a “bust” and you automatically lose your bet</li>
             <li>If your hand and the dealer's hand are equal, you do not win or lose anything. </li>
             <li>Soft 17 is another way of describing a blackjack hand worth 17 which includes an Ace, where the Ace counted either as 1 or 11</li>
         </ol>
-       
-        
-        
     </div>
-    
-   
 </body>
