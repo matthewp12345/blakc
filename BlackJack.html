@@ -125,7 +125,7 @@
             for (let card of player.Hand) {
                 player.Points += card.Truevalue
             }
-            document.querySelector("div.c" + player.ID + " h2").innerHTML = player.Points
+            document.querySelector("div.B" + player.ID + " h2").innerHTML = player.Points
         }
         function youWin() {
             console.log("w")
@@ -136,7 +136,7 @@
             document.querySelector("button#stand").disabled = "true"
             document.querySelector("div.c1 img.c0").style.display = "inline-block"
             document.querySelector("div.c1 img.d0").style.display = "none"
-            document.querySelector("div.c1 h2").style.display = "block"
+            document.querySelector("div.B1 h2").style.display = "block"
             pWins += 1 
             document.querySelector("div.wins h1.pWins").innerHTML = pWins   
             document.querySelector("button#nextHand").style.display = "inline-block"
@@ -150,7 +150,7 @@
             document.querySelector("button#stand").disabled = "true"
             document.querySelector("div.c1 img.c0").style.display = "inline-block"
             document.querySelector("div.c1 img.d0").style.display = "none"
-            document.querySelector("div.c1 h2").style.display = "block"
+            document.querySelector("div.B1 h2").style.display = "block"
             dWins += 1
             document.querySelector("div.wins h1.dWins").innerHTML = dWins
             document.querySelector("button#nextHand").style.display = "inline-block"
@@ -164,7 +164,7 @@
             document.querySelector("button#stand").disabled = "true"
             document.querySelector("div.c1 img.c0").style.display = "inline-block"
             document.querySelector("div.c1 img.d0").style.display = "none"
-            document.querySelector("div.c1 h2").style.display = "block"
+            document.querySelector("div.B1 h2").style.display = "block"
             document.querySelector("button#nextHand").style.display = "inline-block"
         }
         function finish() {
@@ -201,7 +201,7 @@
             document.querySelector("button#stand").disabled = null
             document.querySelector("div.c1 img.c0").style.display = "none"
             document.querySelector("div.c1 img.d0").style.display = "inline-block"
-            document.querySelector("div.c1 h2").style.display = "none"
+            document.querySelector("div.B1 h2").style.display = "none"
             document.querySelector("div.wins h1.dWins").innerHTML = 0
             document.querySelector("div.wins h1.pWins").innerHTML = 0
             pWins = 0
@@ -231,7 +231,7 @@
             document.querySelector("button#stand").disabled = null
             document.querySelector("div.c1 img.c0").style.display = "none"
             document.querySelector("div.c1 img.d0").style.display = "inline-block"
-            document.querySelector("div.c1 h2").style.display = "none"
+            document.querySelector("div.B1 h2").style.display = "none"
             document.querySelector("button#nextHand").style.display = "none"
             if (cardDeck.length < 10) {
                 makeDeck()
@@ -338,12 +338,38 @@
         }
         div.c0 {
             display: flex;
-            justify-content: center
+            justify-content: center;
+           
+           
+            
+        
         }
-        div.c0 h1 {
-            display: flex;
-            justify-content: bottom
+       
+        div.c1 {
+            display:flex;
+            justify-content: center;
+            
         }
+        div.B1 {
+            text-align: center;
+        }
+        div.B0 {
+            text-align: center;
+            vertical-align: bottom;
+        }
+        div.B0 h2 {
+            display: inline-block;
+        }
+        div.B1 h2 {
+            display: inline-block;
+        }
+        div.end {
+            text-align: center;
+           
+
+        }
+        
+
     </style>
 </head>
 <body>
@@ -365,9 +391,12 @@
             <h2 class="cards">48</h2>
             <img src="2B.svg" alt="" width="104">         
         </div>
-        <div class="c1">
-            <h1>Dealer:</h1>
+        <div class="B1">
             <h2></h2>
+            <h1>Dealer</h1>
+        </div>
+        <div class="c1">
+            
             <img class="d0" src="2B.svg" alt="" width="104">
             <img class="c0" src="5_of_clubs.png" alt="" width="100" style="display: none">
             <img class="c1" src="5_of_clubs.png" alt="" width="100" style="display: none">
@@ -388,16 +417,12 @@
             <img class="c5" src="5_of_clubs.png" alt="" width="100" style="display: none">
             <img class="c6" src="5_of_clubs.png" alt="" width="100" style="display: none">
             <img class="c7" src="5_of_clubs.png" alt="" width="100" style="display: none">
-            <h1>You:</h1>
+            
         </div>
-        <style>
-            div.c0 {
-                left: 50%;
-            }
-            div.c1 {
-                left: 50%;
-            }
-        </style>
+        <div class= "B0">
+            <h2></h2>
+            <h1>You</h1>
+        </div>
         <button id="hit" class="game" onclick="hit(players[0])">Hit</button>
         <button id="stand" class="game" onclick="dealerMove()">Stand</button>
         <button id="restart" onclick="startGame()">Restart</button>
