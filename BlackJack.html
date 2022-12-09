@@ -313,6 +313,8 @@
             width: auto;
             height: 100vh;
             background-position: 1px;
+            margin: 0;
+            padding: 0;
             
         }
         button#nextHand {
@@ -322,6 +324,16 @@
         div.started {
             background-color: #0e5a2a;
             margin: 0;
+            height: 100vh;
+        }
+        div.rules h1 {
+            text-align: center;
+        }
+        div.rules {
+            font-size: 30px;
+            margin: 45px;
+            padding-left: 20px;
+            
         }
     
     </style>
@@ -385,12 +397,20 @@
     </div>
     <div class="rules" style="display: none">
         <h1>Rules</h1>
-        <ol>
-            <li>Cards from 2-10 are worth their face value. Face cards are worth 10. Aces are worth 11 or 1</li>
-            <li>If your hand is closer to 21 than the dealer's, you win . If your hand is equal to 21, it is called a “blackjack” or a “natural” and you automatically win</li>
-            <li>If the dealer's hand is closer to 21 than yours, you lose your entire bet. If your hand becomes over 21 after a hit, it is called a “bust” and you automatically lose your bet</li>
-            <li>If your hand and the dealer's hand are equal, you do not win or lose anything. </li>
-            <li>Soft 17 is another way of describing a blackjack hand worth 17 which includes an Ace, where the Ace counted either as 1 or 11</li>
+            <ol type="1">
+                 
+                 <li>Cards from 2-10 are worth their face value. Face cards are worth 10. Aces are worth 11 or 1</li><br>
+                 
+                 <li>The goal of blackjack is to beat the dealer's hand by getting as close to 21 points as possible without going over 21.</li><br>
+                 
+                 <li>Each player starts with two cards, one of the dealer's cards is hidden until the end</li><br>
+                 
+                 <li>If your hand and the dealer's hand are equal, you do not win or lose anything. </li><br>
+                 
+                 <li>To 'Hit' is to ask for another card</li><br>
+                
+                <li>Soft 17 is another way of describing a blackjack hand worth 17 which includes an Ace, where the Ace counted either as 1 or 11</li><br>
+                
         </ol>
     </div>
 </body>
