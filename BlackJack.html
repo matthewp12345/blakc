@@ -210,6 +210,38 @@
             shuffleDeck()
             dealHands()
         }
+        function play() {
+            document.querySelector("div.intro").style.display = "none"
+            document.querySelector("div.started").style.display = "block"
+            document.querySelector("html").style.backgroundColor = "#0e5a2a"
+            players = new Array()
+            playerhand = new Array()
+            dealerhand = new Array()
+            playerStart = {ID: 0, Hand: playerhand, Name: "You", Points: 0}
+            dealerStart = {ID: 1, Hand: dealerhand, Name: "Dealer", Points: 0}
+            players.push(playerStart)
+            players.push(dealerStart)
+            let images = document.querySelectorAll("div.c0 img, div.c1 img")
+            for (let image of images) {
+                image.style.display = "none"
+            }
+            p = 2
+            endText = document.querySelector("div.end h1")
+            endText.style.display = "none"
+            document.querySelector("h2.cards").innerHTML = 48
+            document.querySelector("button#hit").disabled = null
+            document.querySelector("button#stand").disabled = null
+            document.querySelector("div.c1 img.c0").style.display = "none"
+            document.querySelector("div.c1 img.d0").style.display = "inline-block"
+            document.querySelector("div.B1 h2").style.display = "none"
+            document.querySelector("div.wins h1.dWins").innerHTML = 0
+            document.querySelector("div.wins h1.pWins").innerHTML = 0
+            pWins = 0
+            dWins = 0
+            makeDeck()
+            shuffleDeck()
+            dealHands()
+        }
         function nextHand() {
             document.querySelector("div.intro").style.display = "none"
             document.querySelector("div.started").style.display = "block"
