@@ -323,7 +323,7 @@
             width: auto;
             height: 100vh;
             background-position: 1px;
-            
+            margin: 0;
             padding: 0;
             
         }
@@ -339,6 +339,7 @@
             background-color: #0e5a2a;
             margin: 0;
             height: 100vh;
+            justify-content: space-between;
         }
         div.rules h1 {
             text-align: center;
@@ -348,15 +349,11 @@
             margin: 45px;
             padding-left: 20px;
             
-            
         }
         div.c0 {
             display: flex;
             justify-content: center;
-            align-self: flex-end;
-           
-           
-            
+            margin-top: auto; 
         
         }
        
@@ -367,6 +364,7 @@
             
         }
         div.B1 {
+            
             text-align: center;
         }
         .flex-B1{
@@ -377,10 +375,12 @@
             text-align: center;
             vertical-align: bottom;
         }
-        div.B0 h2 {
+        div.B0 h2, div.B0 h1 {
+            position: absolute;
+            top: -20px;
             display: inline-block;
         }
-        div.B1 h2 {
+        div.B1 h2, div.B1 h1 {
             display: inline-block;
         }
         div.end {
@@ -403,10 +403,10 @@
              <button id="rules" onclick="showRules()">Rules</button>
         </div>
     </div>
-    <div class="end">
-        <h1 style="display: none">You Lose!</h1>
-    </div>
     <div class="started" style="display: none">
+        <div class="end">
+            <h1 style="display: none">You Lose!</h1>
+        </div>
         <button id="home" onclick="home()">Home</button>
         <div class="wins">
             <h1 class="pWins" style="display: inline-block">0</h1><h1 style="display: inline-block"> - </h1><h1 class="dWins" style="display: inline-block">0</h1>
@@ -416,11 +416,11 @@
             <h2 class="cards">48</h2>
             <img src="2B.svg" alt="" width="104">         
         </div>
-        <div class="B1">
-            <h2></h2>
-            <h1>Dealer</h1>
-        </div>
         <div class="cards">
+            <div class="B1">
+                <h2></h2>
+                <h1>Dealer</h1>
+            </div>
             <div class="c1">
                 
                 <img class="d0" src="2B.svg" alt="" width="104">
@@ -445,10 +445,10 @@
                 <img class="c7" src="5_of_clubs.png" alt="" width="100" style="display: none">
                 
             </div>
-        </div>
-        <div class= "B0">
-            <h2></h2>
-            <h1>You</h1>
+            <div class= "B0">
+                <h2></h2>
+                <h1>You</h1>
+            </div>
         </div>
         <button id="hit" class="game" onclick="hit(players[0])">Hit</button>
         <button id="stand" class="game" onclick="dealerMove()">Stand</button>
@@ -471,11 +471,7 @@
                  
                  <li>To 'Hit' is to ask for another card.</li><br>
 
-<<<<<<< HEAD
-                 <li>To "Stand" is to end your turn and give the dealer a turn.</li><br>
-=======
                  <li>To "Stand" is to end your turn and give the dealer a turn.</li> <br>
->>>>>>> ec144205db598526f1882b6b58b42fd465c30888
 
                  <li>At the end of the dealer's turn, if the dealer does not get more than 21 points, the player with the most points wins.</li><br>
                  
