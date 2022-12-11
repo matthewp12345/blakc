@@ -245,7 +245,12 @@
         function showRules() {
             document.querySelector("div.intro").style.display = "none"
             document.querySelector("div.rules").style.display = "block"
-        
+        }
+        function home() {
+            document.querySelector("div.intro").style.display = "block"
+            document.querySelector("div.rules").style.display = "none"
+            document.querySelector("div.started").style.display = "none"
+        }
     </script>
     <style>
         button.game {
@@ -318,54 +323,16 @@
             background-position: 1px;
             margin: 0;
             padding: 0;
+            
         }
         button#nextHand {
-            cursor: pointer;
-            display: inline-block;
-            font-family: 'mogra', san serif;
-            padding: 12px 40px;
-            text-align: center;
-            text-decoration: none;
-            transition: all 250ms;
-             border: 0;
-            font-size: 40px;
-            margin: 100px;
-            border-radius: 50px;
-            background-color: #0e5a2a;
-            color: rgba(255, 255, 255, 0.89);
-            box-shadow: rgba(9, 48, 24, 0.2) 0 -25px 18px -14px inset,rgba(9, 66, 31, 0.15) 0 1px 2px,rgba(17, 75, 39, 0.15) 0 2px 4px,rgba(17, 85, 43, 0.15) 0 4px 8px,rgba(15, 87, 42, 0.15) 0 8px 16px,rgba(44, 187, 99, .15) 0 16px 32px;
+            
         }
-        button#restart {
-            cursor: pointer;
-            display: inline-block;
-            font-family: 'mogra', san serif;
-            padding: 12px 40px;
-            text-align: center;
-            text-decoration: none;
-            transition: all 250ms;
-             border: 0;
-            font-size: 40px;
-            margin: 100px;
-            border-radius: 50px;
+        button#restart {}
+        div.started {
             background-color: #0e5a2a;
-            color: rgba(255, 255, 255, 0.89);
-            box-shadow: rgba(9, 48, 24, 0.2) 0 -25px 18px -14px inset,rgba(9, 66, 31, 0.15) 0 1px 2px,rgba(17, 75, 39, 0.15) 0 2px 4px,rgba(17, 85, 43, 0.15) 0 4px 8px,rgba(15, 87, 42, 0.15) 0 8px 16px,rgba(44, 187, 99, .15) 0 16px 32px;
-        }
-        button#play {
-            cursor: pointer;
-            display: inline-block;
-            font-family: 'mogra', san serif;
-            padding: 12px 40px;
-            text-align: center;
-            text-decoration: none;
-            transition: all 250ms;
-             border: 0;
-            font-size: 40px;
-            margin: 100px;
-            border-radius: 50px;
-            background-color: #0e5a2a;
-            color: rgba(255, 255, 255, 0.89);
-            box-shadow: rgba(9, 48, 24, 0.2) 0 -25px 18px -14px inset,rgba(9, 66, 31, 0.15) 0 1px 2px,rgba(17, 75, 39, 0.15) 0 2px 4px,rgba(17, 85, 43, 0.15) 0 4px 8px,rgba(15, 87, 42, 0.15) 0 8px 16px,rgba(44, 187, 99, .15) 0 16px 32px;
+            margin: 0;
+            height: 100vh;
         }
         div.rules h1 {
             text-align: center;
@@ -373,15 +340,24 @@
         div.rules {
             font-size: 30px;
             margin: 45px;
-            padding-left: 20px;   
+            padding-left: 20px;
+            
         }
         div.c0 {
             display: flex;
             justify-content: center;
+            align-items: flex-end;
+           
+           
+            
+        
         }
+       
         div.c1 {
             display:flex;
-            justify-content: center;  
+            justify-content: center;
+            align-items: flex-start;
+            
         }
         div.B1 {
             text-align: center;
@@ -402,8 +378,11 @@
         }
         div.end {
             text-align: center;
+           
+
         }
         
+
     </style>
 </head>
 <body>
@@ -417,6 +396,7 @@
         <h1 style="display: none">You Lose!</h1>
     </div>
     <div class="started" style="display: none">
+        <button id="home" onclick="home()">Home</button>
         <div class="wins">
             <h1 class="pWins" style="display: inline-block">0</h1><h1 style="display: inline-block"> - </h1><h1 class="dWins" style="display: inline-block">0</h1>
         </div>
@@ -451,6 +431,7 @@
             <img class="c5" src="5_of_clubs.png" alt="" width="100" style="display: none">
             <img class="c6" src="5_of_clubs.png" alt="" width="100" style="display: none">
             <img class="c7" src="5_of_clubs.png" alt="" width="100" style="display: none">
+            
         </div>
         <div class= "B0">
             <h2></h2>
@@ -463,6 +444,7 @@
     </div>
     <div class="rules" style="display: none">
         <h1>Rules</h1>
+        <button id="home" onclick="home()">Home</button>
             <ol type="1">
                  
                  <li>Cards from 2-10 are worth their face value. Face cards are worth 10. Aces are worth 11 or 1.</li><br>
@@ -475,12 +457,12 @@
                  
                  <li>To 'Hit' is to ask for another card.</li><br>
 
-                 <li>To "Stand" is to end your turn and give the dealer a turn.</li><br>
+                 <li>To "Stand" is to end your turn and give the dealer a turn.</li>
 
                  <li>At the end of the dealer's turn, if the dealer does not get more than 21 points, the player with the most points wins.</li><br>
                  
-                 <li>Aces are counted as an 11 unless they would put your hand over 21 points.</li><br>
+                 <li>Aces are counted as an 11 unless they would put a hand over 21 points.</li><br>
+                
         </ol>
-        <button id="play"onclick="play()">Play</button>
     </div>
 </body>
