@@ -138,7 +138,7 @@
             document.querySelector("button#stand").disabled = "true"
             document.querySelector("div.c1 img.c0").style.display = "inline-block"
             document.querySelector("div.c1 img.d0").style.display = "none"
-            document.querySelector("div.B1 h2").style.display = "block"
+            document.querySelector("div.B1 h2").style.display = "inline-block"
             pWins += 1 
             document.querySelector("div.wins h1.pWins").innerHTML = pWins   
             document.querySelector("button#nextHand").style.display = "inline-block"
@@ -152,7 +152,7 @@
             document.querySelector("button#stand").disabled = "true"
             document.querySelector("div.c1 img.c0").style.display = "inline-block"
             document.querySelector("div.c1 img.d0").style.display = "none"
-            document.querySelector("div.B1 h2").style.display = "block"
+            document.querySelector("div.B1 h2").style.display = "inline-block"
             dWins += 1
             document.querySelector("div.wins h1.dWins").innerHTML = dWins
             document.querySelector("button#nextHand").style.display = "inline-block"
@@ -166,7 +166,7 @@
             document.querySelector("button#stand").disabled = "true"
             document.querySelector("div.c1 img.c0").style.display = "inline-block"
             document.querySelector("div.c1 img.d0").style.display = "none"
-            document.querySelector("div.B1 h2").style.display = "block"
+            document.querySelector("div.B1 h2").style.display = "inline-block"
             document.querySelector("button#nextHand").style.display = "inline-block"
         }
         function finish() {
@@ -340,7 +340,6 @@
             background-color: #0e5a2a;
             margin: 0;
             height: 100vh;
-            justify-content: space-between;
         }
         div.rules h1 {
             text-align: center;
@@ -361,7 +360,6 @@
         div.c1 {
             display:flex;
             justify-content: center;
-            align-self: flex-start;
             
         }
         div.B1 {
@@ -377,8 +375,6 @@
             vertical-align: bottom;
         }
         div.B0 h2, div.B0 h1 {
-            position: absolute;
-            top: -20px;
             display: inline-block;
         }
         div.B1 h2, div.B1 h1 {
@@ -386,12 +382,12 @@
         }
         div.end {
             text-align: center;
-           
         }
         div.cards {
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
+            justify-content: center;
+            justify-self: center;
 
         }
 
@@ -419,8 +415,8 @@
         </div>
         <div class="cards">
             <div class="B1">
+                <h1>Dealer:</h1>
                 <h2></h2>
-                <h1>Dealer</h1>
             </div>
             <div class="c1">
                 
@@ -447,8 +443,8 @@
                 
             </div>
             <div class= "B0">
+                <h1>You:</h1>
                 <h2></h2>
-                <h1>You</h1>
             </div>
         </div>
         <button id="hit" class="game" onclick="hit(players[0])">Hit</button>
