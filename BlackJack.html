@@ -321,7 +321,7 @@
             width: auto;
             height: 100vh;
             background-position: 1px;
-            margin: 0;
+            
             padding: 0;
             
         }
@@ -341,6 +341,7 @@
             font-size: 30px;
             margin: 45px;
             padding-left: 20px;
+            
             
         }
         div.c0 {
@@ -380,6 +381,13 @@
             text-align: center;
            
 
+        }
+        button#home {
+          float: right;
+          width: 100px;
+          text-align: center;
+          font-size: large;
+          
         }
         
 
@@ -443,8 +451,9 @@
         <button id="nextHand" onclick="nextHand()" style="display: none"> Next hand</button>
     </div>
     <div class="rules" style="display: none">
-        <h1>Rules</h1>
         <button id="home" onclick="home()">Home</button>
+        <h1>Rules</h1>
+        
             <ol type="1">
                  
                  <li>Cards from 2-10 are worth their face value. Face cards are worth 10. Aces are worth 11 or 1.</li><br>
@@ -457,7 +466,7 @@
                  
                  <li>To 'Hit' is to ask for another card.</li><br>
 
-                 <li>To "Stand" is to end your turn and give the dealer a turn.</li>
+                 <li>To "Stand" is to end your turn and give the dealer a turn.</li><br>
 
                  <li>At the end of the dealer's turn, if the dealer does not get more than 21 points, the player with the most points wins.</li><br>
                  
