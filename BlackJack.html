@@ -182,7 +182,7 @@
         }
         function startGame() {
             document.querySelector("div.intro").style.display = "none"
-            document.querySelector("div.started").style.display = "block"
+            document.querySelector("div.started").style.display = "flex"
             document.querySelector("html").style.backgroundColor = "#0e5a2a"
             players = new Array()
             playerhand = new Array()
@@ -214,7 +214,7 @@
         }
         function nextHand() {
             document.querySelector("div.intro").style.display = "none"
-            document.querySelector("div.started").style.display = "block"
+            document.querySelector("div.started").style.display = "flex"
             players = new Array()
             playerhand = new Array()
             dealerhand = new Array()
@@ -346,24 +346,25 @@
         div.c0 {
             display: flex;
             justify-content: center;
-            align-items: flex-end;
+            align-self: flex-end;
            
+           
+            
+        
         }
        
         div.c1 {
             display:flex;
             justify-content: center;
-            align-items: flex-start;
-            display: flex;
-            flex-direction: row;
-            margin: top;
+            align-self: flex-start;
+            
         }
         div.B1 {
             text-align: center;
+        }
+        .flex-B1{
             display: flex;
             flex-direction: row;
-            justify-content: center;
-            margin: top;
         }
         div.B0 {
             text-align: center;
@@ -379,7 +380,12 @@
             text-align: center;
            
         }
-        
+        div.cards {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+
+        }
 
     </style>
 </head>
@@ -407,29 +413,31 @@
             <h2></h2>
             <h1>Dealer</h1>
         </div>
-        <div class="c1">
-            
-            <img class="d0" src="2B.svg" alt="" width="104">
-            <img class="c0" src="5_of_clubs.png" alt="" width="100" style="display: none">
-            <img class="c1" src="5_of_clubs.png" alt="" width="100" style="display: none">
-            <img class="c2" src="5_of_clubs.png" alt="" width="100" style="display: none">
-            <img class="c3" src="5_of_clubs.png" alt="" width="100" style="display: none">
-            <img class="c4" src="5_of_clubs.png" alt="" width="100" style="display: none">
-            <img class="c5" src="5_of_clubs.png" alt="" width="100" style="display: none">
-            <img class="c6" src="5_of_clubs.png" alt="" width="100" style="display: none">
-            <img class="c7" src="5_of_clubs.png" alt="" width="100" style="display: none">
-        </div>
-        <div class="c0">
-            <h2></h2>
-            <img class="c0" src="5_of_clubs.png" alt="" width="100" style="display: none">
-            <img class="c1" src="5_of_clubs.png" alt="" width="100" style="display: none">
-            <img class="c2" src="5_of_clubs.png" alt="" width="100" style="display: none">
-            <img class="c3" src="5_of_clubs.png" alt="" width="100" style="display: none">
-            <img class="c4" src="5_of_clubs.png" alt="" width="100" style="display: none">
-            <img class="c5" src="5_of_clubs.png" alt="" width="100" style="display: none">
-            <img class="c6" src="5_of_clubs.png" alt="" width="100" style="display: none">
-            <img class="c7" src="5_of_clubs.png" alt="" width="100" style="display: none">
-            
+        <div class="cards">
+            <div class="c1">
+                
+                <img class="d0" src="2B.svg" alt="" width="104">
+                <img class="c0" src="5_of_clubs.png" alt="" width="100" style="display: none">
+                <img class="c1" src="5_of_clubs.png" alt="" width="100" style="display: none">
+                <img class="c2" src="5_of_clubs.png" alt="" width="100" style="display: none">
+                <img class="c3" src="5_of_clubs.png" alt="" width="100" style="display: none">
+                <img class="c4" src="5_of_clubs.png" alt="" width="100" style="display: none">
+                <img class="c5" src="5_of_clubs.png" alt="" width="100" style="display: none">
+                <img class="c6" src="5_of_clubs.png" alt="" width="100" style="display: none">
+                <img class="c7" src="5_of_clubs.png" alt="" width="100" style="display: none">
+            </div>
+            <div class="c0">
+                <h2></h2>
+                <img class="c0" src="5_of_clubs.png" alt="" width="100" style="display: none">
+                <img class="c1" src="5_of_clubs.png" alt="" width="100" style="display: none">
+                <img class="c2" src="5_of_clubs.png" alt="" width="100" style="display: none">
+                <img class="c3" src="5_of_clubs.png" alt="" width="100" style="display: none">
+                <img class="c4" src="5_of_clubs.png" alt="" width="100" style="display: none">
+                <img class="c5" src="5_of_clubs.png" alt="" width="100" style="display: none">
+                <img class="c6" src="5_of_clubs.png" alt="" width="100" style="display: none">
+                <img class="c7" src="5_of_clubs.png" alt="" width="100" style="display: none">
+                
+            </div>
         </div>
         <div class= "B0">
             <h2></h2>
