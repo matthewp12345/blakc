@@ -380,6 +380,8 @@
         }
         div.end {
             text-align: center;
+            margin-top: auto;
+            margin-bottom: auto;
         }
         div.cards {
             display: flex;
@@ -403,9 +405,6 @@
         </div>
     </div>
     <div class="started" style="display: none">
-        <div class="end">
-            <h1 style="display: none">You Lose!</h1>
-        </div>
         <button id="nextHand" onclick="nextHand()" style="display: none"> Next hand</button>
         <div class="wins">
             <h1 class="pWins" style="display: inline-block">0</h1><h1 style="display: inline-block"> - </h1><h1 class="dWins" style="display: inline-block">0</h1>
@@ -431,6 +430,10 @@
                 <img class="c5" src="5_of_clubs.png" alt="" width="100" style="display: none">
                 <img class="c6" src="5_of_clubs.png" alt="" width="100" style="display: none">
                 <img class="c7" src="5_of_clubs.png" alt="" width="100" style="display: none">
+            </div>
+            <div class="end">
+                <h1 style="display: none">You Lose!</h1>
+                <button id="nextHand" onclick="nextHand()" style="display: none"> Next hand</button>
             </div>
             <div class="c0">
                 <h2></h2>
