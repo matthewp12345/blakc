@@ -398,8 +398,10 @@
             justify-content: center;
         }
         div.deck {
-            align-items: center;
-            display: flex;
+            position: absolute;
+            top: 50%;
+            bottom: 50%;
+            transform: translate(-50%, -50%);
         }
 
     </style>
@@ -459,8 +461,8 @@
                 </div>
             </div>
             <div class="deck">
-                <h2 class="cards">48</h2>
                 <img src="2B.svg" alt="" width="104">
+                <div class="cards">48</div>
             </div>
         </div>
         <div class="options">
