@@ -244,7 +244,7 @@
         }
         function showRules() {
             document.querySelector("div.intro").style.display = "none"
-            document.querySelector("div.rules").style.display = "block"
+            document.querySelector("div.rules").style.display = "flex"
             document.querySelector("html").style.backgroundColor = "#0e5a2a"
         }
         function home() {
@@ -377,7 +377,8 @@
             color: white;
             margin: 45px;
             padding-left: 20px;
-            
+            display: flex;
+            flex-direction: column;
         }
         div.c0 {
             display: flex;
@@ -452,8 +453,8 @@
             align-items: center;
             display: flex;
         }
-        div.rule button#home {
-            
+        div.rules button#home {
+            margin-left: auto;
         }
 
     </style>
@@ -513,8 +514,8 @@
                 </div>
             </div>
             <div class="deck">
-                <h2 class="cards">48</h2>
                 <img src="2B.svg" alt="" width="104">
+                <h2 class="cards">48</h2>
             </div>
         </div>
         <div class="options">
