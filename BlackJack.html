@@ -390,6 +390,10 @@
             justify-self: center;
 
         }
+        button#home {
+            align-self: flex-start;
+            height: 70px;
+        }
 
     </style>
 </head>
@@ -404,7 +408,7 @@
         <div class="end">
             <h1 style="display: none">You Lose!</h1>
         </div>
-        <button id="home" onclick="home()">Home</button>
+        <button id="nextHand" onclick="nextHand()" style="display: none"> Next hand</button>
         <div class="wins">
             <h1 class="pWins" style="display: inline-block">0</h1><h1 style="display: inline-block"> - </h1><h1 class="dWins" style="display: inline-block">0</h1>
         </div>
@@ -450,7 +454,7 @@
         <button id="hit" class="game" onclick="hit(players[0])">Hit</button>
         <button id="stand" class="game" onclick="dealerMove()">Stand</button>
         <button id="restart" onclick="startGame()">Restart</button>
-        <button id="nextHand" onclick="nextHand()" style="display: none"> Next hand</button>
+        <button id="home" onclick="home()">Home</button>
     </div>
     <div class="rules" style="display: none">
         <button id="home" onclick="home()">Home</button>
