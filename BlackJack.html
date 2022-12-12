@@ -340,11 +340,9 @@
             text-align: center;
             text-decoration: none;
             transition: all 250ms;
-             border: 0;
-            font-size: 25px;
-            margin: 110px;
-             user-select: none;
-             -webkit-user-select: none;
+            border: 0;
+            user-select: none;
+            -webkit-user-select: none;
             touch-action: manipulation;
         }
         button#restart {
@@ -366,7 +364,7 @@
             justify-content: center;
             letter-spacing: -.8px;
             line-height: 24px;
-            min-width: 140px;
+            min-width: 70px;
             outline: 0;
             padding: 0 17px;
             text-align: center;
@@ -451,7 +449,7 @@
             justify-content: center;
             letter-spacing: -.8px;
             line-height: 24px;
-            min-width: 140px;
+            min-width: 70px;
             outline: 0;
             padding: 0 17px;
             text-align: center;
@@ -461,7 +459,6 @@
             -webkit-user-select: none;
             touch-action: manipulation;
         }
-
         div.game {
             display: flex;
             justify-content: center;
@@ -470,13 +467,22 @@
             align-items: center;
             display: flex;
         }
+        div.deck h2 {
+            position: relative;
+            right: 66px;
+            font-size: 30px;
+        }
         div.rules button#home {
             margin-left: auto;
+        }
+        div.wins {
+            font-size: larger;
+            min-width: 150px;
+            color: white;
         }
         div.end h1 {
             font-size: 70px;
         }
-
     </style>
 </head>
 <body>
@@ -497,7 +503,6 @@
                     <h2></h2>
                 </div>
                 <div class="c1">
-                    
                     <img class="d0" src="2B.svg" alt="" width="104">
                     <img class="c0" src="5_of_clubs.png" alt="" width="100" style="display: none">
                     <img class="c1" src="5_of_clubs.png" alt="" width="100" style="display: none">
@@ -530,7 +535,6 @@
                     <img class="c5" src="5_of_clubs.png" alt="" width="100" style="display: none">
                     <img class="c6" src="5_of_clubs.png" alt="" width="100" style="display: none">
                     <img class="c7" src="5_of_clubs.png" alt="" width="100" style="display: none">
-                    
                 </div>
             </div>
             <div class="deck">
